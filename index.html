@@ -1,55 +1,106 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>SIKOO | SIKOO</title>
-    <style>
-      /* Ensure full-screen display */
-      html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden;
-      }
-      
-      /* Set the canvas to take the full screen */
-      #unity-canvas {
-        width: 100vw;
-        height: 100vh;
-        background-color: #231F20;
-        display: block;
-      }
-    </style>
-  </head>
-  <body>
-    <canvas id="unity-canvas" tabindex="-1"></canvas>
-    <script src="Build/SikooWebGL.loader.js"></script>
-    <script>
-   
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-        
-        var canvas = document.querySelector("#unity-canvas");
-        canvas.style.position = "fixed";
-      }
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>SIKOO | SIKOO</title>
+  <style>
+    /* Ensure full-screen display */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    /* Set the canvas to take the full screen */
+    #unity-canvas {
+      width: 100vw;
+      height: 100vh;
+      background-color: #231F20;
+      display: block;
+    }
 
-      createUnityInstance(document.querySelector("#unity-canvas"), {
-        arguments: [],
-        dataUrl: "Build/SikooWebGL.data",
-        frameworkUrl: "Build/SikooWebGL.framework.js",
-        codeUrl: "Build/SikooWebGL.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "SIKOO",
-        productName: "SIKOO",
-        productVersion: "1.0",
-        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-      });
-    </script>
-  </body>
+    /* Style the full-screen button */
+    #fullscreen-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: #f1c40f;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 9999;
+    }
+
+    #fullscreen-button:hover {
+      background-color: #e67e22;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="unity-canvas" tabindex="-1"></canvas>
+  <button id="fullscreen-button">Full Screen</button>
+
+  <script src="Build/SikooWebGL.loader.js"></script>
+  <script>
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      // Mobile device style: fill the whole browser client area with the game canvas:
+      var meta = document.createElement('meta');
+      meta.name = 'viewport';
+      meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+      document.getElementsByTagName('head')[0].appendChild(meta);
+      
+      var canvas = document.querySelector("#unity-canvas");
+      canvas.style.position = "fixed";
+    }
+
+    // Function to toggle full-screen mode
+    function toggleFullscreen() {
+      var canvas = document.querySelector("#unity-canvas");
+      if (!document.fullscreenElement) {
+        // Enter full-screen mode
+        if (canvas.requestFullscreen) {
+          canvas.requestFullscreen();
+        } else if (canvas.mozRequestFullScreen) { // Firefox
+          canvas.mozRequestFullScreen();
+        } else if (canvas.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+          canvas.webkitRequestFullscreen();
+        } else if (canvas.msRequestFullscreen) { // IE/Edge
+          canvas.msRequestFullscreen();
+        }
+        document.getElementById('fullscreen-button').textContent = "Exit Full Screen";
+      } else {
+        // Exit full-screen mode
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+          document.msExitFullscreen();
+        }
+        document.getElementById('fullscreen-button').textContent = "Full Screen";
+      }
+    }
+
+    // Attach event listener to the full-screen button
+    document.getElementById('fullscreen-button').addEventListener('click', toggleFullscreen);
+
+    // Initialize Unity instance
+    createUnityInstance(document.querySelector("#unity-canvas"), {
+      arguments: [],
+      dataUrl: "Build/SikooWebGL.data",
+      frameworkUrl: "Build/SikooWebGL.framework.js",
+      codeUrl: "Build/SikooWebGL.wasm",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "SIKOO",
+      productName: "SIKOO",
+      productVersion: "1.0",
+    });
+  </script>
+</body>
 </html>
