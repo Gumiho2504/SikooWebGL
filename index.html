@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>SIKOO | SIKOO</title>
+    
+    <!-- Add favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
     <style>
       /* Ensure full-screen display */
       html, body {
@@ -26,7 +30,6 @@
     <canvas id="unity-canvas" tabindex="-1"></canvas>
     <script src="Build/SikooWebGL.loader.js"></script>
     <script>
-   
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
         var meta = document.createElement('meta');
@@ -47,8 +50,6 @@
         companyName: "SIKOO",
         productName: "SIKOO",
         productVersion: "1.0",
-        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       });
     </script>
   </body>
