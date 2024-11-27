@@ -1,0 +1,21 @@
+{
+    "short_name": "Sikoo",
+    "name": "Sikoo WebGL PWA",
+    "icons": [
+      {
+        "src": "image/192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "image/playstore.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "https://gumiho2504.github.io/SikooWebGL/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#000000"
+  }
+  

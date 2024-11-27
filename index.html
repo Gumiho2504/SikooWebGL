@@ -24,11 +24,18 @@
         display: block;
       }
     </style>
+    <link rel="manifest" href="manifest.json">
   </head>
   <body>
+    
     <canvas id="unity-canvas" tabindex="-1"></canvas>
     <script src="Build/SikooWebGL.loader.js"></script>
     <script>
+       if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('Service Worker Registered'))
+      .catch((error) => console.error('Service Worker Registration Failed:', error));
+  }
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
         var meta = document.createElement('meta');
