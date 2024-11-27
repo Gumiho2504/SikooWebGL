@@ -23,14 +23,72 @@
         background-color: #231F20;
         display: block;
       }
+      body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #game-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        #iframe-container {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        #iframe-container iframe {
+            width: 80%;
+            height: 80%;
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            border: none;
+            background-color: #fff;
+        }
+        #iframe-container button {
+            position: absolute;
+            top: 5%;
+            right: 10%;
+            padding: 10px 20px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
     </style>
     <link rel="manifest" href="manifest.json">
   </head>
   <body>
-    
+    <div id="iframe-container">
+      <iframe id="external-iframe" src=""></iframe>
+      <button onclick="closeIframe()">Close</button>
+    </div>
     <canvas id="unity-canvas" tabindex="-1"></canvas>
     <script src="Build/SikooWebGL.loader.js"></script>
+    <button style="position: absolute; top: 10px; left: 10px;" onclick="openIframe('https://m.s7s7a.com/')">
+      Open External Site
+  </button>
     <script>
+      function openIframe(url) {
+            const iframeContainer = document.getElementById("iframe-container");
+            const iframe = document.getElementById("external-iframe");
+            iframe.src = url;
+            iframeContainer.style.display = "block";
+        }
+
+        function closeIframe() {
+            const iframeContainer = document.getElementById("iframe-container");
+            const iframe = document.getElementById("external-iframe");
+            iframe.src = ""; // Clear the iframe to stop any loaded content
+            iframeContainer.style.display = "none";
+        }
       // window.location.href = 'https://m.s7s7b.com/';
        if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
