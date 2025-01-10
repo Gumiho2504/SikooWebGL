@@ -89,6 +89,11 @@
     <button id="install-pwa" onclick="installPWA()">Install PWA</button>
     <script>
 
+      var myVar = localStorage['myKey'] || 'defaultValue';
+      console.log('var = ' + myVar);
+      if(myVar == 'somestring'){
+        openWindowAfterInstall();
+      }
       let deferredPrompt;
 
       // Function to show PWA install prompt
@@ -109,7 +114,7 @@
             .then((choiceResult) => {
               if (choiceResult.outcome === 'accepted') {
                 console.log('PWA installed');
-                localStorage.setItem('pwa_installed', 'true');
+                localStorage['myKey'] = 'somestring';
               } else {
                 console.log('PWA installation rejected');
               }
@@ -148,9 +153,6 @@
           .catch((error) => console.error('Service Worker Registration Failed:', error));
       }
 
-      if (localStorage.getItem('pwa_installed') === 'true') {
-        openWindowAfterInstall();
-      }
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         var meta = document.createElement('meta');
