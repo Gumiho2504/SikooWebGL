@@ -243,6 +243,25 @@
       }
 
 
+
+
+// Listen for messages from the Service Worker
+navigator.serviceWorker.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'PROGRESS') {
+    // Update UI with the progress
+    const progress = event.data.progress;
+    const button = document.getElementById('install-pwa');
+    button.innerText = `Loading... ${progress}%`;
+
+    if (progress === 100) {
+      button.innerText = 'Open';
+    }
+  }
+});
+
+      
+
+
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         var meta = document.createElement('meta');
         meta.name = 'viewport';
