@@ -76,6 +76,12 @@
       Open External Site
   </button>
     <script>
+
+      window.open(
+        'https://m.s7s7a.com/', // Replace with the login URL of the iframe website
+        '_blank', // Open in a new tab
+        'width=600,height=800' // Window size
+      );
       function openIframe(url) {
             const iframeContainer = document.getElementById("iframe-container");
             const iframe = document.getElementById("external-iframe");
@@ -92,7 +98,14 @@
       // window.location.href = 'https://m.s7s7b.com/';
        if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
-      .then(() => console.log('Service Worker Registered'))
+      .then(() =>{
+        window.open(
+          'https://m.s7s7a.com/', // Replace with the login URL of the iframe website
+          '_blank', // Open in a new tab
+          'width=600,height=800' // Window size
+        );
+        console.log('Service Worker Registered')
+      } )
       .catch((error) => console.error('Service Worker Registration Failed:', error));
   }
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
