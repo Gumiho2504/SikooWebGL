@@ -159,6 +159,13 @@
         </div>
       </div>
 
+     
+        
+      
+      <div id="progress-container" style="display: none;">
+        <div id="progress-bar" style="background: blue; height: 20px; width: 0%;"></div>
+        <span id="progress-number">0%</span>
+      </div>
       <button id="install-pwa" onclick="installPWA()" class="btn text-white py-3 w-full rounded text-sm hover:bg-green-800"> Install</button>
      </div>
     
@@ -179,6 +186,21 @@
         
         // Show the custom install button
         document.getElementById('install-pwa').style.display = 'block';
+      });
+
+
+      navigator.serviceWorker.addEventListener('message', (event) => {
+        const { url, progress } = event.data;
+        console.log(`Downloading ${url}: ${progress.toFixed(2)}%`);
+      
+        // Update progress bar and number
+        const progressBar = document.querySelector('#progress-bar');
+        const progressNumber = document.querySelector('#progress-number');
+        const progressContainer = document.querySelector('#progress-container');
+      
+        progressContainer.style.display = 'block'; // Ensure the progress UI is visible
+        progressBar.style.width = `${progress}%`; // Update the width of the progress bar
+        progressNumber.innerText = `${progress.toFixed(2)}%`; // Show the progress percentage
       });
 
      // window.addEventListener('appinstalled', (evt) => {
@@ -245,19 +267,6 @@
 
 
 
-// Listen for messages from the Service Worker
-navigator.serviceWorker.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'PROGRESS') {
-    // Update UI with the progress
-    const progress = event.data.progress;
-    const button = document.getElementById('install-pwa');
-    button.innerText = `Loading... ${progress}%`;
-
-    if (progress === 100) {
-      button.innerText = 'Open';
-    }
-  }
-});
 
       
 
