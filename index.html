@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>SIKOO | SIKOO</title>
-    
+    <title>https://play.google.com/store/apps/details?id=com.diamondlife.slots.vegas.free&hl=en&pli=1</title>
     <style>
       /* Ensure full-screen display */
       html, body {
@@ -62,31 +61,107 @@
       }
       /* Custom button for download prompt */
       #install-pwa {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        padding: 10px 20px;
-        background: green;
-        color: white;
-        border: none;
-        cursor: pointer;
-        font-size: 16px;
-        display: none;
+       
+        display: block;
       }
     </style>
     <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { 'google-sans': ['"Google Sans"', 'sans-serif'], },
+            
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="./index.css">
   </head>
-  <body>
-    <div id="iframe-container">
-      <iframe id="external-iframe" src=""></iframe>
-      <button onclick="closeIframe()">Close</button>
-    </div>
-    <!-- //<canvas id="unity-canvas" tabindex="-1"></canvas> -->
-    <script src="Build/SikooWebGL.loader.js"></script>
-    <button style="position: absolute; top: 10px; left: 10px;" onclick="installPWA()">
-      Open External Site
-    </button>
-    <button id="install-pwa" onclick="installPWA()">Install PWA</button>
+  <body class="font-google-sans container mx-auto px-2">
+    
+    <!-- navigation-bar -->
+    <nav class="fix mt-4 flex justify-between mb-4">
+      
+      <div class="flex space-x-4 items-center" >
+        <svg class="playstore-logo" aria-hidden="true" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0,0h40v40H0V0z"></path><g><path d="M19.7,19.2L4.3,35.3c0,0,0,0,0,0c0.5,1.7,2.1,3,4,3c0.8,0,1.5-0.2,2.1-0.6l0,0l17.4-9.9L19.7,19.2z" fill="#EA4335"></path><path d="M35.3,16.4L35.3,16.4l-7.5-4.3l-8.4,7.4l8.5,8.3l7.5-4.2c1.3-0.7,2.2-2.1,2.2-3.6C37.5,18.5,36.6,17.1,35.3,16.4z" fill="#FBBC04"></path><path d="M4.3,4.7C4.2,5,4.2,5.4,4.2,5.8v28.5c0,0.4,0,0.7,0.1,1.1l16-15.7L4.3,4.7z" fill="#4285F4"></path><path d="M19.8,20l8-7.9L10.5,2.3C9.9,1.9,9.1,1.7,8.3,1.7c-1.9,0-3.6,1.3-4,3c0,0,0,0,0,0L19.8,20z" fill="#34A853"></path></g></svg>
+        <span class="font-medium  text-gray-600" style="font-size: 22px;">Google Play</span>
+      </div>
+      <div class="flex space-x-4 items-center">
+        <svg class="icon text-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+        </svg>
+
+        <svg class="icon text-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+          <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
+        </svg>
+        
+        
+        
+      </div>
+      
+    </nav>
+     <!-- navigation-bar -->
+
+     <!-- tabview -->
+     <div class="px-4 flex justify-between py-4">
+      <a href="#" class="text-md main-color">Game</a>
+      <a href="#" class="text-md text-color">Apps</a>
+      <a href="#" class="text-md text-color">Movies</a>
+      <a href="#" class="text-md text-color">Kids</a>
+     </div>
+     <!-- tabview -->
+
+     <div class="px-4 py-8">
+      <div class="flex space-x-5">
+        <div class="app-icon">
+          <img src="/image/1024.png" alt="">
+        </div>
+        <div class="">
+          <h3 class="text-2xl text-slate-900 font-meduim ">Cat Chaos: Prankster</h3>
+          <h4 class="text-md main-color">S77 Casino</h4>
+          <span class="text-xs text-slate-500 font-thin">Contains adsIn-app purchases</span>
+        </div>
+      </div>
+
+      <!-- Rating -->
+      <div class="flex space-x-4 py-6">
+        <div class="text-center flex space-x-4" style="height: 44px;">
+          <div >
+            <h5 class="text-sm text-slate-900">4.5 ★</h5>
+            <span class="text-xs text-slate-500 font-thin">7.43K reviews</span>
+          </div>
+          <div style="width: 1px;" class="my-2 bg-slate-400" >
+
+          </div>
+        </div>
+        <div class="text-center flex space-x-4" style="height: 44px;">
+          <div >
+            <h5 class="text-sm text-slate-900">10M+</h5>
+            <span class="text-xs text-slate-500 font-thin">Downloads</span>
+          </div>
+          <div style="width: 1px;" class="my-2 bg-slate-400" >
+
+          </div>
+        </div>
+        <div class="text-center flex space-x-4" style="height: 44px;">
+          <div >
+            <h5 class="text-sm text-slate-900"> 18+</h5>
+            <span class="text-xs text-slate-500 font-thin">Rated for 3+ ⓘ</span>
+          </div>
+          <div style="width: 1px;" class="my-2 bg-slate-400" >
+
+          </div>
+        </div>
+      </div>
+
+      <button id="install-pwa" onclick="installPWA()" class="btn text-white py-3 w-full rounded text-sm hover:bg-green-800"> Install</button>
+     </div>
+    
     <script>
 
       var myVar = localStorage['myKey'] || 'defaultValue';

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Chaos: Prankster</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+            <div class="relative flex items-center justify-between h-16">
+                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                    <!-- Mobile menu button-->
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="flex-shrink-0">
+                        <img class="h-8 w-auto" src="https://example.com/logo.png" alt="Your Logo">
+                    </div>
+                    <div class="hidden sm:block sm:ml-6">
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                            <a href="#" class="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Games</a>
+                            <a href="#" class="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Apps</a>
+                            <a href="#" class="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- App Content -->
+    <div class="max-w-xl mx-auto p-4 bg-white shadow-md rounded-lg mt-10">
+        <div class="flex mb-4">
+            <img src="app-logo.png" alt="App Logo" class="w-16 h-16 rounded-md object-cover">
+            <div class="ml-4">
+                <h1 class="text-xl font-bold">Cat Chaos: Prankster</h1>
+                <p class="text-gray-600">Mirai Games</p>
+                <p class="text-xs text-gray-500">Contains ads · In-app purchases</p>
+                <span class="text-sm text-yellow-500 flex items-center mt-1">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.564-.955L10 0l2.948 5.955 6.564.955-4.756 4.635 1.122 6.545z" />
+                    </svg>
+                    3.6 (7.4K reviews)
+                </span>
+                <p class="text-xs text-gray-600 mt-1">10M+ Downloads</p>
+                <p class="text-xs text-gray-600">Rated for 3+</p>
+            </div>
+        </div>
+        <button class="bg-green-500 text-white py-2 px-4 rounded-md w-full mb-4">Install</button>
+        <div class="flex justify-between text-blue-500 mb-4">
+            <button class="flex items-center">
+                <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z" />
+                </svg>
+                Share
+            </button>
+            <button class="flex items-center">
+                <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z" />
+                </svg>
+                Add to wishlist
+            </button>
+        </div>
+        <img src="app-screenshot.png" alt="App Screenshot" class="w-full rounded-md mb-4 object-cover">
+        <div>
+            <h2 class="text-lg font-bold mb-1">About this game</h2>
+            <p class="text-gray-700 text-sm">Experience the fun and chaos of pranking your friends with Cat Chaos!</p>
+        </div>
+    </div>
+</body>
+</html>
