@@ -190,7 +190,7 @@
 
 
       navigator.serviceWorker.addEventListener('message', (event) => {
-        const { url, progress } = event.data;
+        const { url, progress } = event.data; 
         console.log(`Downloading ${url}: ${progress.toFixed(2)}%`);
       
         // Update progress bar and number
