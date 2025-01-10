@@ -81,7 +81,7 @@
       <iframe id="external-iframe" src=""></iframe>
       <button onclick="closeIframe()">Close</button>
     </div>
-    <canvas id="unity-canvas" tabindex="-1"></canvas>
+    <!-- //<canvas id="unity-canvas" tabindex="-1"></canvas> -->
     <script src="Build/SikooWebGL.loader.js"></script>
     <button style="position: absolute; top: 10px; left: 10px;" onclick="installPWA()">
       Open External Site
@@ -109,8 +109,7 @@
             .then((choiceResult) => {
               if (choiceResult.outcome === 'accepted') {
                 console.log('PWA installed');
-                // Allow the external window to open after installation
-                openWindowAfterInstall();
+               
               } else {
                 console.log('PWA installation rejected');
               }
@@ -141,24 +140,19 @@
         iframeContainer.style.display = "none";
       }
 
-      // Register Service Worker and open the external site after success
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('service-worker.js')
           .then(() => {
-            console.log('Service Worker Registered');
-            // Open the external window after Service Worker registration
-           // openWindowAfterInstall();
+            console.log('Service Worker Registered');           
           })
           .catch((error) => console.error('Service Worker Registration Failed:', error));
       }
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
         var meta = document.createElement('meta');
         meta.name = 'viewport';
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
-        
         var canvas = document.querySelector("#unity-canvas");
         canvas.style.position = "fixed";
       }
