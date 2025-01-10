@@ -5,8 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>SIKOO | SIKOO</title>
     
-  
-    
     <style>
       /* Ensure full-screen display */
       html, body {
@@ -24,44 +22,57 @@
         display: block;
       }
       body {
-            margin: 0;
-            overflow: hidden;
-        }
-        #game-container {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-        }
-        #iframe-container {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1000;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-        #iframe-container iframe {
-            width: 80%;
-            height: 80%;
-            position: absolute;
-            top: 10%;
-            left: 10%;
-            border: none;
-            background-color: #fff;
-        }
-        #iframe-container button {
-            position: absolute;
-            top: 5%;
-            right: 10%;
-            padding: 10px 20px;
-            background: red;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
+        margin: 0;
+        overflow: hidden;
+      }
+      #game-container {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+      }
+      #iframe-container {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+      #iframe-container iframe {
+        width: 80%;
+        height: 80%;
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        border: none;
+        background-color: #fff;
+      }
+      #iframe-container button {
+        position: absolute;
+        top: 5%;
+        right: 10%;
+        padding: 10px 20px;
+        background: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      /* Custom button for download prompt */
+      #install-pwa {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        background: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        display: none;
+      }
     </style>
     <link rel="manifest" href="manifest.json">
   </head>
@@ -72,38 +83,75 @@
     </div>
     <canvas id="unity-canvas" tabindex="-1"></canvas>
     <script src="Build/SikooWebGL.loader.js"></script>
-    <button style="position: absolute; top: 10px; left: 10px;" onclick="openIframe('https://m.s7s7a.com/')">
+    <button style="position: absolute; top: 10px; left: 10px;" onclick="installPWA()">
       Open External Site
-  </button>
+    </button>
+    <button id="install-pwa" onclick="installPWA()">Install PWA</button>
     <script>
 
-     
-      function openIframe(url) {
-            const iframeContainer = document.getElementById("iframe-container");
-            const iframe = document.getElementById("external-iframe");
-            iframe.src = url;
-            iframeContainer.style.display = "block";
-        }
+      let deferredPrompt;
 
-        function closeIframe() {
-            const iframeContainer = document.getElementById("iframe-container");
-            const iframe = document.getElementById("external-iframe");
-            iframe.src = ""; // Clear the iframe to stop any loaded content
-            iframeContainer.style.display = "none";
+      // Function to show PWA install prompt
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent the default installation prompt
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        // Show the custom install button
+        document.getElementById('install-pwa').style.display = 'block';
+      });
+
+      function installPWA() {
+        // Show the prompt for installing the PWA
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice
+            .then((choiceResult) => {
+              if (choiceResult.outcome === 'accepted') {
+                console.log('PWA installed');
+                // Allow the external window to open after installation
+                openWindowAfterInstall();
+              } else {
+                console.log('PWA installation rejected');
+              }
+            });
+          deferredPrompt = null;
         }
-      // window.location.href = 'https://m.s7s7b.com/';
-       if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-      .then(() =>{
+      }
+
+      function openWindowAfterInstall() {
         window.open(
           'https://m.s7s7a.com/', // Replace with the login URL of the iframe website
           '_blank', // Open in a new tab
           'width=600,height=800' // Window size
         );
-        console.log('Service Worker Registered')
-      } )
-      .catch((error) => console.error('Service Worker Registration Failed:', error));
-  }
+      }
+
+      function openIframe(url) {
+        const iframeContainer = document.getElementById("iframe-container");
+        const iframe = document.getElementById("external-iframe");
+        iframe.src = url;
+        iframeContainer.style.display = "block";
+      }
+
+      function closeIframe() {
+        const iframeContainer = document.getElementById("iframe-container");
+        const iframe = document.getElementById("external-iframe");
+        iframe.src = ""; // Clear the iframe to stop any loaded content
+        iframeContainer.style.display = "none";
+      }
+
+      // Register Service Worker and open the external site after success
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => {
+            console.log('Service Worker Registered');
+            // Open the external window after Service Worker registration
+           // openWindowAfterInstall();
+          })
+          .catch((error) => console.error('Service Worker Registration Failed:', error));
+      }
+
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
         var meta = document.createElement('meta');
