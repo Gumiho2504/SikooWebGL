@@ -181,6 +181,12 @@
         document.getElementById('install-pwa').style.display = 'block';
       });
 
+      window.addEventListener('appinstalled', (evt) => {
+        console.log('PWA was installed!');
+        document.getElementById('install-pwa').innerText = "open"
+      });
+      
+
       function installPWA() {
         // Show the prompt for installing the PWA
         if (deferredPrompt) {
@@ -190,6 +196,7 @@
               if (choiceResult.outcome === 'accepted') {
                 console.log('PWA installed');
                 localStorage['myKey'] = 'somestring';
+                
               } else {
                 console.log('PWA installation rejected');
               }
@@ -229,7 +236,8 @@
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('service-worker.js')
           .then(() => {
-            console.log('Service Worker Registered');           
+            console.log('Service Worker Registered'); 
+                   
           })
           .catch((error) => console.error('Service Worker Registration Failed:', error));
       }
